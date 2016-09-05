@@ -15,3 +15,18 @@ Route::get('/', [
     'as' => 'home',
     'uses' => 'HomeController@index'
 ]);
+
+Route::any('api/gpio/{gpio}/on', [
+    'as' => 'api.gpio.on',
+    'uses' => 'ApiController@gpioOn'
+])->where('gpio', '[0-9]+');
+
+Route::any('api/gpio/{gpio}/off', [
+    'as' => 'api.gpio.off',
+    'uses' => 'ApiController@gpioOff'
+]);
+
+Route::any('api/gpio/states', [
+    'as' => 'api.gpio.states',
+    'uses' => 'ApiController@gpioStates'
+]);
