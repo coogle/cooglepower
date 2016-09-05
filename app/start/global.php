@@ -11,6 +11,8 @@
 |
 */
 
+\CooglePower\WiringPi\WiringPi::wiringPiSetupSys();
+
 ClassLoader::addDirectories(array(
 
 	app_path().'/commands',
