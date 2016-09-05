@@ -1,5 +1,7 @@
 <?php
 
+use \CooglePower\WiringPi\WiringPi;
+
 class HomeController extends BaseController {
 
 	/*
@@ -17,8 +19,18 @@ class HomeController extends BaseController {
     
 	public function index()
 	{
-	    echo "Hello World!";
-	    exit;
+	    
+	    $outlets = [];
+	    
+	    for($i = 0; $i < 16; $i++) {
+	        $outlets[] = [
+	            'gpio' => $i,
+	            'text' => 'Outlet #' . ($i +1),
+	            'checked' => (bool) WiringPi::digitalRead(WiringPi::WPI_TO_BCM[$i])
+	        ];
+	    }
+	    
+	    return \View::make('layout', compact('outlets'));
 	}
 
 }
