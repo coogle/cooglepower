@@ -83,25 +83,15 @@ class CronRunCommand extends Command {
 		// You can use any of the available schedules and pass it an anonymous function
 		$this->everyFiveMinutes(function()
 		{
-			// In the function, you can use anything that you can use everywhere else in Laravel.
-			// Like models:
-			$affectedRows = User::where('logged_in', true)->update(array('logged_in' => false)); // Not really useful, but possible
-			// Or call artisan commands:
-			Artisan::call('auth:clear-reminders');
-			// You can append messages to the cron log like so:
-			$this->messages[] = $affectedRows . ' users logged out';
+		    $outlets = Outlet::all();
+		    
+		    foreach($outlets as $outlet) {
+		        Log::info("Processing Outlet {$outlet->name}");
+		        $outlet->processCron();
+		    }
+		    
 		});
 		
-		// Another example:
-		// Send the admin an email every day
-		$this->dailyAt('09:00', function()
-		{
-			// This uses the mailer class
-			Mail::send('hello', array(), function($message)
-			{
-				$message->to('admin@mydomain.com', 'Cron Job')->subject('I am still running!');
-			});
-		});
 		$this->finish();
 	}
 	protected function finish()
