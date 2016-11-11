@@ -13,3 +13,4 @@
 
 Artisan::add(new ToggleSwitch());
 Artisan::add(new CronRunCommand());
+Artisan::add(new InitializeSchedule());

@@ -1,5 +1,9 @@
 <?php
 
+if(!defined('STDIN')) {
+    define('STDIN',fopen("php://stdin","r"));
+}
+
 /*
 |--------------------------------------------------------------------------
 | Register The Laravel Class Loader
@@ -11,7 +15,9 @@
 |
 */
 
-\CooglePower\WiringPi\WiringPi::wiringPiSetupSys();
+if(class_exists('\CooglePower\WiringPi\WiringPi')) {
+    \CooglePower\WiringPi\WiringPi::wiringPiSetupSys();
+}
 
 ClassLoader::addDirectories(array(
 
