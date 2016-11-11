@@ -4,8 +4,6 @@ use \CooglePower\WiringPi\WiringPi;
 
 class ApiController extends \BaseController
 {
-
-    
     protected function getGpioStates()
     {
         $states = [];

@@ -7,7 +7,7 @@
     ],
 	"require": {
 		"laravel/framework": "4.2.*",
-		"ronanguilloux/php-gpio" : "*"
+		"mtdowling/cron-expression" : "*"
 	},
 	"autoload": {
 		"classmap": [

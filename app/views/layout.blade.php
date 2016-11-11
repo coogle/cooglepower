@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     
-    <title>Toggles</title>
+    <title>CooglePower Console</title>
 
     <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet">
     <script src="//code.ionicframework.com/nightly/js/ionic.bundle.js"></script>
@@ -30,8 +30,9 @@
         <ion-toggle ng-repeat="item in settingsList"
                     ng-model="item.checked" 
                     ng-checked="item.checked"
+                    ng-click="onOutletClicked(item.gpio)"
                     ng-change="outletSwitchChanged(item.gpio, item.checked)">
-          [[ item.text ]]
+          [[ item.text ]] - [[ item.schedule ]]
         </ion-toggle>
         
       </div>

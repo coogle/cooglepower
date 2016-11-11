@@ -19,14 +19,17 @@ class HomeController extends BaseController {
     
 	public function index()
 	{
-	    
 	    $outlets = [];
 	    
-	    for($i = 0; $i < 16; $i++) {
+	    $outletObjs = Outlet::all();
+	    
+	    foreach($outletObjs as $outlet) {
+	        
 	        $outlets[] = [
-	            'gpio' => $i,
-	            'text' => 'Outlet #' . ($i +1),
-	            'checked' => (bool) WiringPi::digitalRead(WiringPi::WPI_TO_BCM[$i])
+	            'gpio' => $outlet->outlet_id,
+	            'text' => $outlet->name,
+	            'checked' => $outlet->isOn(),
+	            'schedule' => $outlet->scheduleText()
 	        ];
 	    }
 	    
