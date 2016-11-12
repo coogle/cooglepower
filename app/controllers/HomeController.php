@@ -29,7 +29,8 @@ class HomeController extends BaseController {
 	            'gpio' => $outlet->outlet_id,
 	            'text' => $outlet->name,
 	            'checked' => $outlet->isOn(),
-	            'schedule' => $outlet->scheduleText()
+	            'schedule' => $outlet->scheduleText(),
+	            'active' => (bool)$outlet->schedule_active
 	        ];
 	    }
 	    
