@@ -1,6 +1,7 @@
 <?php
 
 use CooglePower\WiringPi\WiringPi;
+use Carbon\Carbon;
 class Outlet extends \Eloquent
 {
     protected $table = "outlets";
@@ -38,31 +39,36 @@ class Outlet extends \Eloquent
     
     public function scheduleText()
     {
+        if(!$this->schedule_active) {
+            return "Schedule Inactive";
+        }
+        
         if(empty($this->cron_schedule)) {
             return "Always On";
         }
 
-	switch($this->cron_schedule) {
-		case '@hourly':
-			return "Hourly";
-		case '@annually':
-		case '@yearly':
-			return "Annually";
-		case '@monthly':
-			return "Monthly";
-		case '@weekly':
-			return "Weekly";
-		case '@midnight':
-		case '@daily':
-			return "Daily";
-		default:
+    	switch($this->cron_schedule) {
+    		case '@hourly':
+    			return "Hourly";
+    		case '@annually':
+    		case '@yearly':
+    			return "Annually";
+    		case '@monthly':
+    			return "Monthly";
+    		case '@weekly':
+    			return "Weekly";
+    		case '@midnight':
+    		case '@daily':
+    			return "Daily";
+    		default:
 		        try {
-            			$cronschedule = \CooglePower\Cron\CronSchedule::fromCronString($this->cron_schedule);
-				return $cronschedule->asNaturalLanguage();
+        			$cronschedule = \CooglePower\Cron\CronSchedule::fromCronString($this->cron_schedule);
+				    return $cronschedule->asNaturalLanguage();
         		} catch(\Exception $e) {
             			return "Invalid Schedule";
         		}
         }
+        
         return "Unknown Schedule";
     }
     
