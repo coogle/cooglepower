@@ -2,8 +2,8 @@
 
 return [
     'amazon' => [
-        'client_id'     => '***REMOVED***',
-        'client_secret' => '***REMOVED***',
+	'client_id' => '',
+	'client_secret' => '',
         'scope'         => ['alexa:all'],
     ]
 ];
