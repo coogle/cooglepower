@@ -75,7 +75,7 @@ class Outlet extends \Eloquent
     public function processCron()
     {
         if(empty($this->cron_schedule)) {
-            \Log::info("[OUTLET] No Schedule, Always On");
+            \Log::debug("[OUTLET] No Schedule, Always On");
             return;
         }
 
@@ -84,9 +84,14 @@ class Outlet extends \Eloquent
         if($cron->isDue()) {
             $this->toggle();
             $status = $this->isOn() ? "ON" : "OFF";
-            \Log::info("[OUTLET] Processing change for {$this->name}, Outlet is now $status");
+            
+            if(!empty($this->alert_num)) {
+                \Twilio::message($this->alert_num, "[CooglePower] {$this->name} is now $status");
+            }
+            
+            \Log::debug("[OUTLET] Processing change for {$this->name}, Outlet is now $status");
         } else {
-            \Log::info("[OUTLET] No action needed");
+            \Log::debug("[OUTLET] No action needed");
         }
         
     }

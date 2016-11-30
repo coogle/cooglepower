@@ -121,6 +121,7 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
+	    'Aloha\Twilio\Support\Laravel\ServiceProvider'
 	),
 
 	/*
@@ -187,7 +188,7 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
-
+	    'Twilio'          => 'Aloha\Twilio\Support\Laravel\Facade'
 	),
 
 );

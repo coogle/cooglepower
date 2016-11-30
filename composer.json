@@ -7,7 +7,8 @@
     ],
 	"require": {
 		"laravel/framework": "4.2.*",
-		"mtdowling/cron-expression" : "*"
+		"mtdowling/cron-expression" : "*",
+		"aloha/twilio": "^3.0"
 	},
 	"autoload": {
 		"classmap": [
